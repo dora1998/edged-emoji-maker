@@ -1,12 +1,15 @@
 # edged-emoji-maker
 
-A handy tool edging your slack emojis with white. It improves emoji visibility when you use Slack in dark mode.
+A handy tool edging your Slack emojis with white. It improves emoji visibility when you use Slack in dark mode.
 
 ## Setup
 
 ```
 $ poetry install
+$ cp .env.sample .env
 ```
+
+If you want to import emojis from your workspace, get OAuth Token [here](https://api.slack.com/apps?new_app=1). Then set the token in .env file.
 
 ### Requirements
 
@@ -15,4 +18,20 @@ $ poetry install
 
 ## Basic Usage
 
-...
+### Import emojis from a workspace
+
+```
+$ poetry run python import.py
+```
+
+### Edge emojis
+
+```
+$ poetry run python convert.py
+```
+
+(This script is in development. Sorry...)
+
+## License
+
+MIT License
