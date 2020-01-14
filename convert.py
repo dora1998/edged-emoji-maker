@@ -2,8 +2,6 @@ from scipy.signal import convolve2d
 from PIL import Image, ImageFilter
 import numpy as np
 
-border_size = 2
-
 
 def make_border(f, border_size):
     """
@@ -28,6 +26,12 @@ def make_border(f, border_size):
     return res
 
 
-f = Image.open('./test.png')
-bf = make_border(f, border_size)
-bf.save('./test_output.png')
+def main():
+    border_size = 2
+    f = Image.open('./test.png')
+    bf = make_border(f, border_size)
+    bf.save('./test_output.png')
+
+
+if __name__ == "__main__":
+    main()
