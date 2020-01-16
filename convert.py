@@ -1,19 +1,19 @@
+import glob
+import os
 from scipy.signal import convolve2d
 from PIL import Image, ImageFilter
 import numpy as np
+from tqdm import tqdm
 
 
 def make_border(f, border_size):
-    """
-    Edge emoji with white.
-    """
-    assert border_size > 0
-
     gf = f.convert('LA')
     edge = gf.filter(ImageFilter.FIND_EDGES).filter(ImageFilter.SMOOTH)
+
     l, a = edge.split()
-    _l = l.point(lambda x: 255)
-    border = Image.merge("LA", (_l, a))
+    _l, _a = np.full_like(a, 255), np.array(a)
+    img_array = np.stack([_l, _a], 2)
+    border = Image.fromarray(np.uint8(img_array), "LA")
 
     border_color = border.convert('RGBA')
     diff = [-border_size, border_size]
@@ -27,10 +27,17 @@ def make_border(f, border_size):
 
 
 def main():
-    border_size = 2
-    f = Image.open('./test.png')
-    bf = make_border(f, border_size)
-    bf.save('./test_output.png')
+    BORDER_SIZE = 2
+    INPUT_DIR = './original/'
+    OUTPUT_DIR = './edged/'
+
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+    files = glob.glob(INPUT_DIR + '*')
+    for filename in tqdm(files):
+        f = Image.open(filename)
+        bf = make_border(f, BORDER_SIZE)
+        bf.save(os.path.join(OUTPUT_DIR, os.path.basename(filename)))
 
 
 if __name__ == "__main__":
