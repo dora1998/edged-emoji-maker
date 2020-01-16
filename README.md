@@ -30,7 +30,15 @@ $ poetry run python import.py
 $ poetry run python convert.py
 ```
 
-(This script is in development. Sorry...)
+## FAQ
+
+### Can I use this tool for animated emoji?
+
+No. If you can, please make a PR to this repo!
+
+### How do I add edged emojis in a lump?
+
+Install the Chrome extension "Neutral Face Emoji Tools" [here](https://chrome.google.com/webstore/detail/neutral-face-emoji-tools/anchoacphlfbdomdlomnbbfhcmcdmjej).
 
 ## License
 
