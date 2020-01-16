@@ -2,6 +2,8 @@
 
 A handy tool edging your Slack emojis with white. It improves emoji visibility when you use Slack in dark mode.
 
+<img src="https://user-images.githubusercontent.com/31735614/72543387-f9930d00-38c8-11ea-8c3e-40d38f812eff.png" style="max-width: 480px;">
+
 ## Setup
 
 ```
