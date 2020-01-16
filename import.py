@@ -2,6 +2,7 @@ import os
 from time import sleep
 import requests
 from dotenv import load_dotenv
+from tqdm import tqdm
 
 
 def download_image(url):
@@ -42,7 +43,7 @@ def main():
                        headers={'Authorization': f'Bearer {TOKEN}'})
     emojis = res.json()['emoji']
 
-    for alias, emoji_url in emojis.items():
+    for alias, emoji_url in tqdm(emojis.items()):
         if (emoji_url.startswith('alias:')):
             continue
 
