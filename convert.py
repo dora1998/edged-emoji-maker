@@ -1,7 +1,8 @@
 import glob
 import os
+import pathlib
 from scipy.signal import convolve2d
-from PIL import Image, ImageFilter
+from PIL import Image, ImageFilter, ImageSequence
 import numpy as np
 from tqdm import tqdm
 
@@ -28,16 +29,30 @@ def make_border(f, border_size):
 
 def main():
     BORDER_SIZE = 2
-    INPUT_DIR = './original/'
-    OUTPUT_DIR = './edged/'
+    INPUT_DIR = pathlib.Path('./original/')
+    OUTPUT_DIR = pathlib.Path('./edged/')
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    files = glob.glob(INPUT_DIR + '*')
-    for filename in tqdm(files):
-        f = Image.open(filename)
-        bf = make_border(f, BORDER_SIZE)
-        bf.save(os.path.join(OUTPUT_DIR, os.path.basename(filename)))
+    files = INPUT_DIR.glob('*')
+    for file in tqdm(files):
+        # RGBAで保存できないため、エラーになるのでスキップ
+        if file.suffix == '.jpg':
+            continue
+
+        f = Image.open(file)
+        duration, loop = f.info.get('duration', 0), f.info.get('loop', 0)
+
+        frames = []
+        for frame in ImageSequence.Iterator(f):
+            bf = make_border(frame.convert('RGBA'), BORDER_SIZE)
+            frames.append(bf)
+
+        if len(frames) > 1:
+            frames[0].save(OUTPUT_DIR / file.name, save_all=True,
+                           append_images=frames[1:], optimize=False, duration=duration, loop=loop, transparency=255, disposal=2)
+        else:
+            frames[0].save(OUTPUT_DIR / file.name)
 
 
 if __name__ == "__main__":
