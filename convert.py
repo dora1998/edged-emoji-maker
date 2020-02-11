@@ -1,7 +1,6 @@
 import glob
 import os
 import pathlib
-from scipy.signal import convolve2d
 from PIL import Image, ImageFilter, ImageSequence
 import numpy as np
 from tqdm import tqdm
