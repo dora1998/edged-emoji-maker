@@ -36,7 +36,9 @@ $ poetry run python convert.py
 
 ### Can I use this tool for animated emoji?
 
-No. If you can, please make a PR to this repo!
+~No. If you can, please make a PR to this repo!~
+
+-> Now you can convert animated GIF!
 
 ### How do I add edged emojis in a lump?
 
