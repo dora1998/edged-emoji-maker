@@ -34,7 +34,7 @@ def save_image(path, image):
 
 def main():
     load_dotenv()
-    TOKEN = os.getenv('SLACK_TOKEN')
+    TOKEN = os.getenv('SLACK_APP_TOKEN')
     BASE_DIR = './original/'
 
     os.makedirs(BASE_DIR, exist_ok=True)
