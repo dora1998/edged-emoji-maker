@@ -44,7 +44,7 @@ $ find edged -type f | poetry run python add.py
 $ find edged -type f | awk -F/ '{split($NF, x, "."); print x[1]}' | poetry run python remove.py
 ```
 
-(\*) These script uses private API. Please run them **at your own risk**.
+(\*) These script use private API. Please run them **at your own risk**.
 
 ## FAQ
 
