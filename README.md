@@ -54,6 +54,13 @@ $ find edged -type f | awk -F/ '{split($NF, x, "."); print x[1]}' | poetry run p
 
 -> Now you can convert animated GIF!
 
+### How can I get private API token?
+
+1. Open emoji admin panel (https://{YOUR_WORKSPACE}.slack.com/customize/emoji).
+1. Open Network panel in developer tools.
+1. Find XHR request whose request URL begins "https://{YOUR_WORKSPACE}.slack.com/api/emoji.".
+1. You can see the token that begins "xoxs-" in "Form Data" panel.
+
 ## License
 
 MIT License
