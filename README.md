@@ -32,6 +32,20 @@ $ poetry run python import.py
 $ poetry run python convert.py
 ```
 
+### Add emojis in bulk (\*)
+
+```
+$ find edged -type f | poetry run python add.py
+```
+
+### Remove emojis in bulk (\*)
+
+```
+$ find edged -type f | awk -F/ '{split($NF, x, "."); print x[1]}' | poetry run python remove.py
+```
+
+(\*) These script uses private API. Please run them **at your own risk**.
+
 ## FAQ
 
 ### Can I use this tool for animated emoji?
@@ -39,10 +53,6 @@ $ poetry run python convert.py
 ~No. If you can, please make a PR to this repo!~
 
 -> Now you can convert animated GIF!
-
-### How do I add edged emojis in a lump?
-
-Install the Chrome extension "Neutral Face Emoji Tools" [here](https://chrome.google.com/webstore/detail/neutral-face-emoji-tools/anchoacphlfbdomdlomnbbfhcmcdmjej).
 
 ## License
 
